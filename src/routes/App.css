@@ -1,0 +1,8 @@
+.rootStyle{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.content{
+    padding: 20px;
+}

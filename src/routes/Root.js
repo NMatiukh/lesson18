@@ -4,6 +4,7 @@ import {SearchOutlined} from "@ant-design/icons";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getUsers} from "../redux/actions";
+import "./App.css"
 
 export default function Root() {
     const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function Root() {
         dispatch(getUsers())
     }, []);
     return (
-        <Space>
+        <div className={"rootStyle"}>
             <div>
                 <Space>
                     <Input placeholder="input search text" prefix={<SearchOutlined/>}/>
@@ -26,12 +27,12 @@ export default function Root() {
                             key: value.id,
                         }
                     })}
-                    />
+                />
             </div>
             <Divider type={"vertical"}/>
-            <div>
+            <div className={"content"}>
                 <Outlet/>
             </div>
-        </Space>
+        </div>
     );
 }

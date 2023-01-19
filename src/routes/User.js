@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../redux/actions";
 import {Space, Image, Typography, Button} from "antd";
-import {useLocation, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 const User = () => {
     const dispatch = useDispatch();
@@ -12,16 +12,18 @@ const User = () => {
         dispatch(getUser(userId))
     }, [userId]);
     return (
-        <div>
+        <div style={{display: "flex", flexDirection: "column"}}>
             <div>
                 <Image src={user.image}/>
                 <div>
                     <Typography.Title>{user.firstName + " " + user.lastName}</Typography.Title>
                     <Typography.Text>{user.email}</Typography.Text>
-                    <Space>
-                        <Button>Edit</Button>
-                        <Button danger>Delete</Button>
-                    </Space>
+                    <div>
+                        <Space>
+                            <Button>Edit</Button>
+                            <Button danger>Delete</Button>
+                        </Space>
+                    </div>
                 </div>
             </div>
         </div>
