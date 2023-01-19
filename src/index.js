@@ -8,6 +8,8 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Root from "./routes/Root";
 import ErrorPage from "./ErrorPage";
 import User from "./routes/User";
+import Edit from "./routes/Edit";
+import Add from "./routes/Add";
 
 const router = createBrowserRouter([
     {
@@ -17,11 +19,20 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "user/:id",
-                element: <User/>,
+                element: <User/>
             },
-        ],
-    },
-]);
+            {
+                path: "user/:id/edit",
+                element: <Edit/>
+            },
+            {
+                path: "user/add",
+                element: <Add/>
+            },
+        ]
+    }
+])
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

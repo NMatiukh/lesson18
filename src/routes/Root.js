@@ -1,19 +1,18 @@
-import {Link, Outlet} from "react-router-dom";
-import {Button, Divider, Input, Menu, Space, Typography} from "antd";
-import {SearchOutlined} from "@ant-design/icons";
-import {useEffect} from "react";
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getUsers} from "../redux/actions";
-import "./App.css"
+import {Button, Divider, Menu, Typography} from "antd";
+import {Link, Outlet} from "react-router-dom";
+import("./app.css")
 
-export default function Root() {
+const Root = () => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users.users)
     useEffect(() => {
         dispatch(getUsers())
     }, []);
     return (
-        <div className={"rootStyle"}>
+        <div className={'rootStyle'}>
             <div>
                 <div>
                     <Typography.Title>Users App</Typography.Title>
@@ -23,16 +22,19 @@ export default function Root() {
                     items={users.map(value => {
                         return {
                             label: <Link to={`/user/${value.id}`}>{value.firstName + " " + value.lastName}</Link>,
-                            key: value.id,
+                            key: value.id
                         }
                     })}
-                />
-                <Button style={{width: "100%"}}>New</Button>
+                    />
+               <Link to={`/user/add`}><Button style={{width: "100%"}}>Add new</Button></Link>
             </div>
             <Divider type={"vertical"}/>
-            <div className={"content"}>
+            <div className={'content'}>
                 <Outlet/>
             </div>
         </div>
     );
 }
+    ;
+
+    export default Root;

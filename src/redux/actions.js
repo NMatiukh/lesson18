@@ -1,7 +1,7 @@
 import axios from "axios";
 import {CREATE_USER, DELETE_POST, DELETE_USER, EDIT_USER, GET_POST, GET_USER, GET_USERS} from "./types";
 
-const URL = 'https://fake-server-ruby.vercel.app/';
+const URL = 'http://localhost:3000/';
 
 //POST
 export function getPost() {
