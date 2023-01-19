@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../redux/actions";
-import {Space, Image, Typography, Button} from "antd";
+import {Space, Image, Typography, Button, Card, Avatar} from "antd";
 import {useParams} from "react-router-dom";
+import {DeleteOutlined, EditOutlined, UserOutlined} from "@ant-design/icons";
+import Meta from "antd/es/card/Meta";
 
 const User = () => {
     const dispatch = useDispatch();
@@ -13,19 +15,27 @@ const User = () => {
     }, [userId]);
     return (
         <div style={{display: "flex", flexDirection: "column"}}>
-            <div>
-                <Image src={user.image}/>
-                <div>
-                    <Typography.Title>{user.firstName + " " + user.lastName}</Typography.Title>
-                    <Typography.Text>{user.email}</Typography.Text>
-                    <div>
-                        <Space>
-                            <Button>Edit</Button>
-                            <Button danger>Delete</Button>
-                        </Space>
-                    </div>
-                </div>
-            </div>
+            <Card
+                style={{
+                    width: 300,
+                }}
+                cover={
+                    <img
+                        alt={user.firstName + " " + user.lastName}
+                        src={user.image}
+                    />
+                }
+                actions={[
+                    <EditOutlined key="edit"/>,
+                    <DeleteOutlined key="delete"/>,
+                ]}
+            >
+                <Meta
+                    avatar={<Avatar icon={<UserOutlined/>}/>}
+                    title={user.firstName + " " + user.lastName}
+                    description={user.email}
+                />
+            </Card>
         </div>
     );
 };

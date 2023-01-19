@@ -1,5 +1,5 @@
 import {Link, Outlet} from "react-router-dom";
-import {Button, Divider, Input, Menu, Space} from "antd";
+import {Button, Divider, Input, Menu, Space, Typography} from "antd";
 import {SearchOutlined} from "@ant-design/icons";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -15,10 +15,9 @@ export default function Root() {
     return (
         <div className={"rootStyle"}>
             <div>
-                <Space>
-                    <Input placeholder="input search text" prefix={<SearchOutlined/>}/>
-                    <Button>New</Button>
-                </Space>
+                <div>
+                    <Typography.Title>Users App</Typography.Title>
+                </div>
                 <Divider/>
                 <Menu
                     items={users.map(value => {
@@ -28,6 +27,7 @@ export default function Root() {
                         }
                     })}
                 />
+                <Button style={{width: "100%"}}>New</Button>
             </div>
             <Divider type={"vertical"}/>
             <div className={"content"}>
