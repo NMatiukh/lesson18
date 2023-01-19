@@ -1,20 +1,21 @@
-import {GET_COMMENTS, CREATE_COMMENT, DELETE_COMMENT, EDIT_COMMENT} from "../types";
+import {GET_USERS, CREATE_USER, DELETE_USER, EDIT_USER, GET_USER} from "../types";
 
 const initialState = {
-    comments: []
+    users: [],
+    user: {}
 }
 
-export const commentsReducer = (state = initialState, action) => {
+export const usersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_COMMENTS:
-            return {...state, comments: action.payload}
-        case DELETE_COMMENT:
-            return {...state, comments: state.comments.filter(item => item.id !== action.payload.id)}
-        case CREATE_COMMENT:
-            return {...state, comments: [...state.comments, action.payload]}
-        case EDIT_COMMENT:
+        case GET_USERS:
+            return {...state, users: action.payload}
+        case DELETE_USER:
+            return {...state, users: state.users.filter(item => item.id !== action.payload.id)}
+        case CREATE_USER:
+            return {...state, users: [...state.users, action.payload]}
+        case EDIT_USER:
             return {
-                ...state, comments: state.comments.map(item => {
+                ...state, users: state.users.map(item => {
                     if (item.id === action.payload.id) {
                         return action.payload
                     } else {
@@ -22,6 +23,8 @@ export const commentsReducer = (state = initialState, action) => {
                     }
                 })
             }
+        case GET_USER:
+            return {...state, user: action.payload}
         default:
             return state
     }

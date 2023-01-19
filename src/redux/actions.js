@@ -1,5 +1,5 @@
 import axios from "axios";
-import {CREATE_COMMENT, DELETE_COMMENT, DELETE_POST, EDIT_COMMENT, GET_COMMENTS, GET_POST} from "./types";
+import {CREATE_USER, DELETE_POST, DELETE_USER, EDIT_USER, GET_POST, GET_USER, GET_USERS} from "./types";
 
 const URL = 'http://localhost:3000/';
 
@@ -37,69 +37,82 @@ export function deletePost(post) {
 
 //COMMENTS
 
-export function getComments() {
+export function getUsers() {
     return async dispatch => {
         axios
-            .get(URL + "comments")
+            .get(URL + "users")
             .then(response => dispatch(
                 {
-                    type: GET_COMMENTS,
+                    type: GET_USERS,
+                    payload: response.data
+                }
+            ))
+    }
+}
+export function getUser(id) {
+    return async dispatch => {
+        axios
+            .get(URL + "users/" + id)
+            .then(response => dispatch(
+                {
+                    type: GET_USER,
                     payload: response.data
                 }
             ))
     }
 }
 
-export function deleteComment(comment) {
+
+export function deleteUser(user) {
     return async dispatch => {
         axios
             .request(
                 {
                     method: "DELETE",
-                    url: URL + "comments/" + comment.id
+                    url: URL + "users/" + user.id
                 }
             )
             .then(response => dispatch(
                 {
-                    type: DELETE_COMMENT,
-                    payload: comment
+                    type: DELETE_USER,
+                    payload: user
                 }
             ))
     }
 }
 
-export function createComment(comment) {
+export function createUser(user) {
     return async dispatch => {
         axios
             .request(
                 {
                     method: "POST",
-                    url: URL + "comments",
-                    data: comment
+                    url: URL + "users",
+                    data: user
                 }
             )
             .then(response => dispatch(
                 {
-                    type: CREATE_COMMENT,
+                    type: CREATE_USER,
                     payload: response.data
                 }
             ))
     }
 }
 
-export function editComment(comment) {
+export function editUser(user) {
     return async dispatch => {
         axios
             .request(
                 {
                     method: "PUT",
-                    url: URL + "comments/" + comment.id,
-                    data: comment
+                    url: URL + "users/" + user.id,
+                    data: user
                 }
             )
             .then(response => dispatch(
                 {
-                    type: EDIT_COMMENT,
+                    type: EDIT_USER,
                     payload: response.data
                 }
             ))

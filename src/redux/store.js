@@ -1,10 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {postReducer} from "./reducers/postReducer";
-import {commentsReducer} from "./reducers/commentsReducer";
+import {usersReducer} from "./reducers/usersReducer";
 
 export default configureStore({
     reducer: {
         post: postReducer,
-        comments: commentsReducer
+        users: usersReducer
     }
 })
